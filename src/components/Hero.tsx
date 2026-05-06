@@ -39,13 +39,13 @@ export default function Hero() {
             <p className="text-lg text-brand-red font-display font-black mb-10 max-w-xl mx-auto lg:mx-0">
               De <span className="line-through-red">R$155</span> por apenas <span className="text-3xl text-brand-green">R$15,90</span>
             </p>
-            <a href="#preco">
-              <motion.button
-                whileTap={{ y: 6, boxShadow: "0px 0px 0 #D97706" }}
-                className="bg-brand-yellow text-white px-10 py-5 rounded-full text-xl font-display font-black shadow-pop-yellow border-2 border-brand-yellow-dark hover:brightness-105 transition-all outline-none animate-pulse-glow"
-              >
-                QUERO O KIT COMPLETO AGORA
-              </motion.button>
+            <a
+              href="https://pay.kiwify.com.br/RDBrQcS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-brand-yellow text-white px-10 py-5 rounded-full text-xl font-display font-black shadow-pop-yellow border-2 border-brand-yellow-dark hover:brightness-105 transition-all outline-none animate-pulse-glow cursor-pointer"
+            >
+              QUERO O KIT COMPLETO AGORA
             </a>
             <div className="flex items-center justify-center lg:justify-start gap-6 mt-6 text-sm text-slate-500 font-medium">
               <span>✅ Acesso imediato</span>

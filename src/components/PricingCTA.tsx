@@ -52,13 +52,14 @@ export default function PricingCTA() {
               ))}
             </div>
 
-            <motion.a
-              href="#"
-              whileTap={{ y: 4, boxShadow: "0px 0px 0 #D97706" }}
-              className="block w-full bg-brand-yellow border-4 border-slate-900 text-white px-8 py-6 rounded-3xl text-2xl font-display font-black shadow-[8px_8px_0_#D97706] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0_#D97706] transition-all outline-none text-center animate-pulse-glow"
+            <a
+              href="https://pay.kiwify.com.br/RDBrQcS"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block w-full bg-brand-yellow border-4 border-slate-900 text-white px-8 py-6 rounded-3xl text-2xl font-display font-black shadow-[8px_8px_0_#D97706] hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0_#D97706] transition-all outline-none text-center animate-pulse-glow cursor-pointer"
             >
               QUERO O KIT AGORA POR R$15,90
-            </motion.a>
+            </a>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-400 font-bold uppercase tracking-widest">
               <div className="flex items-center gap-1.5">
