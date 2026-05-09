@@ -20,10 +20,13 @@ export default function Solution() {
                 </div>
               ))}
             </div>
-            <a href="#preco">
-              <button className="bg-brand-blue text-white px-10 py-5 rounded-full text-xl font-display font-black shadow-[8px_8px_0_#2563EB] border-2 border-brand-blue-dark hover:brightness-105 transition-all">
-                VER O KIT COMPLETO
-              </button>
+            <a 
+              href="https://kiwify.app/80CRNoF" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block bg-brand-blue text-white px-10 py-5 rounded-full text-xl font-display font-black shadow-[8px_8px_0_#2563EB] border-2 border-brand-blue-dark hover:brightness-105 transition-all text-center"
+            >
+              VER O KIT COMPLETO
             </a>
           </div>
           <div className="flex-1 w-full max-w-sm">

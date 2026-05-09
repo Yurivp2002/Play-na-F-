@@ -1,11 +1,34 @@
-import { motion } from "motion/react";
 import { Gift } from "lucide-react";
+import { useInView } from "../hooks/useInView";
 
 const bonuses = [
   { num: 1, name: "Guia de Como Plastificar", desc: "Aprenda a plastificar seus jogos para durarem muito mais!", price: 10, emoji: "📋" },
   { num: 2, name: "Meu Primeiro Guia de Oração", desc: "Ensine seu filho a orar com esse guia ilustrado e carinhoso.", price: 5, emoji: "🙏" },
   { num: 3, name: "A História da Salvação", desc: "A maior história já contada, adaptada para os pequenos.", price: 5, emoji: "✝️" },
 ];
+
+function BonusCard({ bonus, index }: { bonus: typeof bonuses[0]; index: number }) {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`animate-on-scroll delay-${index} relative gradient-bonus rounded-[2rem] border-3 border-brand-yellow p-8 text-center hover:scale-105 transition-transform ${isInView ? "in-view" : ""}`}
+    >
+      <div className="absolute -top-3 -right-3 bg-brand-green text-white font-display font-black text-xs px-3 py-1.5 rounded-full border-2 border-white shadow-lg">
+        GRÁTIS
+      </div>
+      <div className="text-5xl mb-4">{bonus.emoji}</div>
+      <div className="font-display font-black text-brand-yellow-dark text-xs tracking-widest mb-2">BÔNUS {bonus.num}</div>
+      <h3 className="font-display font-black text-lg text-slate-900 mb-3">{bonus.name}</h3>
+      <p className="text-slate-600 text-sm font-medium mb-4 leading-relaxed">{bonus.desc}</p>
+      <div className="flex items-center justify-center gap-2">
+        <span className="text-sm text-slate-400 font-bold line-through-red">R${bonus.price}</span>
+        <span className="text-sm font-display font-black text-brand-green">R$0</span>
+      </div>
+    </div>
+  );
+}
 
 export default function Bonuses() {
   return (
@@ -23,26 +46,7 @@ export default function Bonuses() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {bonuses.map((bonus, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="relative gradient-bonus rounded-[2rem] border-3 border-brand-yellow p-8 text-center hover:scale-105 transition-transform"
-            >
-              <div className="absolute -top-3 -right-3 bg-brand-green text-white font-display font-black text-xs px-3 py-1.5 rounded-full border-2 border-white shadow-lg">
-                GRÁTIS
-              </div>
-              <div className="text-5xl mb-4">{bonus.emoji}</div>
-              <div className="font-display font-black text-brand-yellow-dark text-xs tracking-widest mb-2">BÔNUS {bonus.num}</div>
-              <h3 className="font-display font-black text-lg text-slate-900 mb-3">{bonus.name}</h3>
-              <p className="text-slate-600 text-sm font-medium mb-4 leading-relaxed">{bonus.desc}</p>
-              <div className="flex items-center justify-center gap-2">
-                <span className="text-sm text-slate-400 font-bold line-through-red">R${bonus.price}</span>
-                <span className="text-sm font-display font-black text-brand-green">R$0</span>
-              </div>
-            </motion.div>
+            <BonusCard key={i} bonus={bonus} index={i} />
           ))}
         </div>
 

@@ -1,18 +1,18 @@
-import { motion } from "motion/react";
+import { useInView } from "../hooks/useInView";
 
 const products = [
-  { name: "Cartões da Palavra", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/cartoes.png", color: "blue" },
-  { name: "ABC da Fé", price: 20, image: "/MOCKUPS/KIT PRINCIPAL/abc.png", color: "yellow" },
-  { name: "Alfabeto Bíblico", price: 5, image: "/MOCKUPS/KIT PRINCIPAL/alfabeto.png", color: "green" },
-  { name: "Album Heróis da Fé", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/album.png", color: "purple" },
-  { name: "Ebook Heróis da Fé", price: 15, image: "/MOCKUPS/KIT PRINCIPAL/ebook.png", color: "blue" },
-  { name: "Dominó da Palavra", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/domino.png", color: "yellow" },
-  { name: "Jogo da Velha Bíblico", price: 5, image: "/MOCKUPS/KIT PRINCIPAL/velha.png", color: "green" },
-  { name: "Passa Tempo Bíblico", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/passatempo.png", color: "purple" },
-  { name: "Quebra-cabeça Bíblico", price: 20, image: "/MOCKUPS/KIT PRINCIPAL/quebra_cabeca.png", color: "blue" },
-  { name: "Quiz Bíblico", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/quiz.png", color: "yellow" },
-  { name: "Jogo da Memória", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/memoria.png", color: "green" },
-  { name: "Olhos Atentos da Fé", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/olhos.png", color: "purple" },
+  { name: "Cartões da Palavra", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/cartoes.webp", color: "blue" },
+  { name: "ABC da Fé", price: 20, image: "/MOCKUPS/KIT PRINCIPAL/abc.webp", color: "yellow" },
+  { name: "Alfabeto Bíblico", price: 5, image: "/MOCKUPS/KIT PRINCIPAL/alfabeto.webp", color: "green" },
+  { name: "Album Heróis da Fé", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/album.webp", color: "purple" },
+  { name: "Ebook Heróis da Fé", price: 15, image: "/MOCKUPS/KIT PRINCIPAL/ebook.webp", color: "blue" },
+  { name: "Dominó da Palavra", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/domino.webp", color: "yellow" },
+  { name: "Jogo da Velha Bíblico", price: 5, image: "/MOCKUPS/KIT PRINCIPAL/velha.webp", color: "green" },
+  { name: "Passa Tempo Bíblico", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/passatempo.webp", color: "purple" },
+  { name: "Quebra-cabeça Bíblico", price: 20, image: "/MOCKUPS/KIT PRINCIPAL/quebra_cabeca.webp", color: "blue" },
+  { name: "Quiz Bíblico", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/quiz.webp", color: "yellow" },
+  { name: "Jogo da Memória", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/memoria.webp", color: "green" },
+  { name: "Olhos Atentos da Fé", price: 10, image: "/MOCKUPS/KIT PRINCIPAL/olhos.webp", color: "purple" },
 ];
 
 const colorMap: Record<string, { bg: string; border: string; text: string; badge: string }> = {
@@ -21,6 +21,33 @@ const colorMap: Record<string, { bg: string; border: string; text: string; badge
   green: { bg: "bg-emerald-50", border: "border-brand-green", text: "text-brand-green", badge: "bg-brand-green" },
   purple: { bg: "bg-purple-50", border: "border-brand-purple", text: "text-brand-purple", badge: "bg-brand-purple" },
 };
+
+function ProductCard({ product, index }: { product: typeof products[0]; index: number }) {
+  const { ref, isInView } = useInView();
+  const c = colorMap[product.color];
+
+  return (
+    <div
+      ref={ref}
+      className={`animate-on-scroll delay-${index} ${c.bg} rounded-2xl border-3 ${c.border} p-5 text-center product-card-hover relative overflow-hidden group ${isInView ? "in-view" : ""}`}
+    >
+      <div className="mb-4 aspect-square flex items-center justify-center p-2 group-hover:scale-110 transition-transform">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="max-w-full max-h-full object-contain drop-shadow-lg rounded-xl"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <h3 className="font-display font-black text-sm text-slate-800 mb-2 leading-tight">{product.name}</h3>
+      <div className="flex items-center justify-center gap-1">
+        <span className="text-xs text-slate-400 font-bold line-through-red">R${product.price}</span>
+        <span className={`text-xs font-display font-black ${c.text}`}>INCLUSO</span>
+      </div>
+    </div>
+  );
+}
 
 export default function ProductGrid() {
   return (
@@ -39,28 +66,9 @@ export default function ProductGrid() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
-          {products.map((product, i) => {
-            const c = colorMap[product.color];
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className={`${c.bg} rounded-2xl border-3 ${c.border} p-5 text-center product-card-hover relative overflow-hidden group`}
-              >
-                <div className="mb-4 aspect-square flex items-center justify-center p-2 group-hover:scale-110 transition-transform">
-                  <img src={product.image} alt={product.name} className="max-w-full max-h-full object-contain drop-shadow-lg rounded-xl" />
-                </div>
-                <h3 className="font-display font-black text-sm text-slate-800 mb-2 leading-tight">{product.name}</h3>
-                <div className="flex items-center justify-center gap-1">
-                  <span className="text-xs text-slate-400 font-bold line-through-red">R${product.price}</span>
-                  <span className={`text-xs font-display font-black ${c.text}`}>INCLUSO</span>
-                </div>
-              </motion.div>
-            );
-          })}
+          {products.map((product, i) => (
+            <ProductCard key={i} product={product} index={i} />
+          ))}
         </div>
 
         <div className="text-center mt-12">

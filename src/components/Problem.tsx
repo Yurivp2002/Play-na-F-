@@ -1,5 +1,22 @@
-import { motion } from "motion/react";
 import { Target, Smartphone, Heart } from "lucide-react";
+import { useInView } from "../hooks/useInView";
+
+function ProblemCard({ text, icon, color, delay }: { text: string; icon: React.ReactNode; color: string; delay: number }) {
+  const { ref, isInView } = useInView();
+
+  return (
+    <div
+      ref={ref}
+      className={`animate-on-scroll delay-${delay} p-8 bg-brand-cream rounded-[2rem] border-2 border-slate-100 shadow-pop-white text-center hover:translate-y-[-4px] transition-transform ${isInView ? "in-view" : ""}`}
+    >
+      <div className={`w-14 h-14 rounded-2xl mx-auto mb-6 flex items-center justify-center
+        ${color === 'blue' ? 'bg-blue-100 text-brand-blue' : color === 'yellow' ? 'bg-amber-100 text-brand-yellow' : 'bg-emerald-100 text-brand-green'}`}>
+        {icon}
+      </div>
+      <p className="font-bold text-slate-700 leading-relaxed italic">{text}</p>
+    </div>
+  );
+}
 
 export default function Problem() {
   const problems = [
@@ -15,20 +32,7 @@ export default function Problem() {
           <h2 className="font-display font-black text-4xl lg:text-5xl mb-12 text-slate-900">Você não está sozinha nisso</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {problems.map((prob, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="p-8 bg-brand-cream rounded-[2rem] border-2 border-slate-100 shadow-pop-white text-center hover:translate-y-[-4px] transition-transform"
-              >
-                <div className={`w-14 h-14 rounded-2xl mx-auto mb-6 flex items-center justify-center
-                  ${prob.color === 'blue' ? 'bg-blue-100 text-brand-blue' : prob.color === 'yellow' ? 'bg-amber-100 text-brand-yellow' : 'bg-emerald-100 text-brand-green'}`}>
-                  {prob.icon}
-                </div>
-                <p className="font-bold text-slate-700 leading-relaxed italic">{prob.text}</p>
-              </motion.div>
+              <ProblemCard key={i} text={prob.text} icon={prob.icon} color={prob.color} delay={i} />
             ))}
           </div>
         </div>

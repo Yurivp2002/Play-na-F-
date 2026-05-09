@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Gamepad2 } from "lucide-react";
 
 export default function Hero() {
@@ -21,12 +20,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex-1 text-center lg:text-left"
-          >
+          <div className="flex-1 text-center lg:text-left hero-fade-in">
             <div className="inline-block bg-brand-green/10 text-brand-green font-display font-black text-sm px-4 py-2 rounded-full mb-6 border border-brand-green/20">
               🎉 +2.000 famílias já transformaram seus lares
             </div>
@@ -51,18 +45,13 @@ export default function Hero() {
               <span>✅ Acesso imediato</span>
               <span>✅ 7 dias de garantia</span>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-1 relative flex justify-center py-12"
-          >
+          <div className="flex-1 relative flex justify-center py-12 hero-fade-in-delayed">
             <div className="relative w-full max-w-md aspect-[3/4]">
               <div className="absolute inset-0 bg-white border-4 border-brand-blue rounded-[2.5rem] shadow-pop-blue rotate-3 flex flex-col p-6 overflow-hidden">
                 <div className="bg-blue-50 w-full h-2/3 rounded-2xl mb-6 flex items-center justify-center p-4">
-                  <img src="/MOCKUPS/KIT PRINCIPAL/quebra_cabeca.png" alt="Quebra-cabeça Bíblico" className="max-w-full max-h-full object-contain drop-shadow-md rounded-xl" />
+                  <img src="/MOCKUPS/KIT PRINCIPAL/quebra_cabeca.webp" alt="Quebra-cabeça Bíblico" className="max-w-full max-h-full object-contain drop-shadow-md rounded-xl" loading="eager" fetchPriority="high" />
                 </div>
                 <p className="text-slate-900 text-xs font-display font-black uppercase tracking-wider leading-relaxed my-auto text-center px-2">
                   Fortaleça os valores bíblicos do seu filho através de atividades lúdicas que ensinam enquanto divertem.
@@ -71,7 +60,7 @@ export default function Hero() {
               </div>
               <div className="absolute inset-0 bg-white border-4 border-brand-green rounded-[2.5rem] rotate-[-6deg] -z-10 shadow-pop-green flex flex-col p-6">
                 <div className="bg-emerald-50 w-full h-2/3 rounded-2xl mb-6 flex items-center justify-center p-4">
-                  <img src="/MOCKUPS/KIT PRINCIPAL/memoria.png" alt="Jogo da Memória" className="max-w-full max-h-full object-contain drop-shadow-md rounded-xl" />
+                  <img src="/MOCKUPS/KIT PRINCIPAL/memoria.webp" alt="Jogo da Memória" className="max-w-full max-h-full object-contain drop-shadow-md rounded-xl" loading="eager" fetchPriority="high" />
                 </div>
                 <p className="text-slate-900 text-xs font-display font-black uppercase tracking-wider leading-relaxed my-auto text-center px-2">
                   Fortaleça os valores bíblicos do seu filho através de atividades lúdicas que ensinam enquanto divertem.
@@ -82,7 +71,7 @@ export default function Hero() {
                 12<br />JOGOS!
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

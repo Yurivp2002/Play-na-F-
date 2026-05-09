@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { CheckCircle2, Shield, Zap, Clock } from "lucide-react";
 
 export default function PricingCTA() {
